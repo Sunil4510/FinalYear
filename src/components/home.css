@@ -1,0 +1,42 @@
+/* .home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top:20px;
+} */
+
+/* .home__input > input{
+   cursor: pointer;
+} */
+/* .home__input{
+border: 2px solid rgb(133, 132, 132);
+display: inline-block;
+padding: 6px 12px;
+border-radius:10px;
+background-color:rgba(125, 236, 255, 0.431);
+} */
+/* .home__button > input{
+color: rgba(81, 82, 78, 0.589);
+background-color:rgb(32, 187, 32);
+width: 200px;
+height: 40px;
+border:none;
+border-radius: 6px;
+box-shadow: 2px 2px 8px 1px black;
+margin-top: 30px;
+cursor: pointer;
+margin-left: 35px;
+font-size: 20px;
+font-weight: bold;
+} */
+
+/* .home__button > input:hover{
+    color: rgb(0, 0, 0);
+    background-color:rgb(73, 253, 2) ;
+} */
+
+/* .home__heading_h{
+    font-size: 40px;
+    color:rgb(3, 3, 3);
+} */
