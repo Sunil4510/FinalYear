@@ -1,14 +1,40 @@
-import React from 'react';
-import {Link} from "react-router-dom"
+import React,{useState,useContext} from 'react';
+import {Link, useNavigate} from "react-router-dom"
+import {userContext} from "../App"
 const Login = () => {
-    const handleFormSubmit = (e) => {
-        e.preventDefault();
-
-        let email = e.target.elements.email?.value;
-        let password = e.target.elements.password?.value;
-
-        console.log(email, password);
+    const {state,dispatch} = useContext(userContext);
+    const history = useNavigate();   
+    const [login,setlogin] = useState({email:"",password:""});
+    let name,value;
+    const handleinputs = (e) => {
+        name = e.target.name;
+        value = e.target.value;
+        setlogin({...login,[name]:value});
     };
+    console.log(login);
+        const loginuser = async (e)=> {
+            e.preventDefault();
+            const {email,password} = login; 
+            const res = await fetch("/login",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({email,password})
+            });
+
+            const data = await res.json();
+            if(res.status===400 || !data) {
+                window.alert("invalid login");
+            }else{
+                dispatch({type:"user", payload:true});
+                window.alert("login Successfull");
+                history('/');
+            }
+        }
+
+
+
     return (
         <div className='mt-20 flex bg-gray-bg1'>
             <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
@@ -26,13 +52,13 @@ const Login = () => {
                     Log in to your account 🔐
                 </h1>
 
-                <form onSubmit={handleFormSubmit}>
+                <form method="POST">
                     <div>
                         <label htmlFor='email'>Email</label>
                         <input
                             type='email'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='email'
+                            id='email' name = "email" onChange = {handleinputs} value = {login.email}
                             placeholder='Your Email'
                         />
                     </div>
@@ -41,7 +67,7 @@ const Login = () => {
                         <input
                             type='password'
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
-                            id='password'
+                            id='password' name = "password" onChange = {handleinputs} value = {login.password}
                             placeholder='Your Password'
                         />
                     </div>
@@ -49,6 +75,7 @@ const Login = () => {
                     <div className='flex justify-center items-center mt-6'>
                         <button
                             className={`bg-green-400 py-2 px-4 text-sm text-white rounded border border-green-400 focus:outline-none focus:border-green-dark`}
+                            onClick = {loginuser}
                         >
                             Login
                         </button>

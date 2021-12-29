@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import {Link, useLocation} from "react-router-dom"
+import {Link, useNavigate} from "react-router-dom"
 const Signup = () => { 
-    const history = useLocation();   
+    const history = useNavigate();   
     const [user,setUser] = useState({name:"",email:"",password:"",cpassword:"",})
     let name,value;
 
@@ -36,7 +36,7 @@ const Signup = () => {
         else{
           window.alert("valid registration");
           console.log("valid registration");
-          history.push("/login");
+          history("/login");
         }
       }
 
