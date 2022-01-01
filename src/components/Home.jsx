@@ -3,7 +3,8 @@ import "./home.css"
 import { useNavigate } from 'react-router-dom'
 import image from "./images/image1.jpg"
 import img2 from "./images/img2.jpg"
-import { userContext } from '../App'
+import { userContext } from '../App' 
+import {motion} from "framer-motion"
 const Home = () => {
         const {state,dispatch} = useContext(userContext);
         const history = useNavigate(); 
@@ -143,23 +144,18 @@ const Home = () => {
 
                                     <p className={p} className="attribution">NIH: National Heart, Lung, and Blood Institute</p>
                                     </div>
-                                    <div className="home_right p-10">
-                                        <img src={image} className="w-96 h-80 rounded-lg shadow-2xl" alt="img"/>
+                                    <div 
+                                     className="home_right p-10">
+                                        <motion.img src={image}
+                                        whileHover={{ scale: 1.1 }}
+                                        animate={{x:[-20,20,-20,20,0]}} className="w-96 h-80 cursor-pointer rounded-lg shadow-2xl" alt="img"/>
                                         <br/>
-                                        <img src={img2} className="w-96 h-80 ml-96 rounded-lg shadow-2xl" alt="img"/>
-                                        <img src={image} className="w-96 h-80 rounded-lg shadow-2xl" alt="img"/>
+                                        <motion.img 
+                                        whileHover={{scale:1.1}}
+                                        animate={{y:[-20,20,-20,20,0]}} src={img2} className="w-96 h-80 cursor-pointer ml-96 rounded-lg shadow-2xl" alt="img"/>
                                         <br/>
-                                        <img src={img2} className="w-96 h-80 ml-96 rounded-lg shadow-2xl" alt="img"/>
-                                        <img src={image} className="w-96 h-80 rounded-lg shadow-2xl" alt="img"/>
-                                        <br/>
-                                        <img src={img2} className="w-96 h-80 ml-96 rounded-lg shadow-2xl" alt="img"/>
-                                        <img src={image} className="w-96 h-80 rounded-lg shadow-2xl" alt="img"/>
-                                        <br/>
-                                        <img src={img2} className="w-96 h-80 ml-96 rounded-lg shadow-2xl" alt="img"/>
-                                        <img src={image} className="w-96 h-80 rounded-lg shadow-2xl" alt="img"/>
-                                        <br/>
-                                        <img src={img2} className="w-96 h-80 ml-96 rounded-lg shadow-2xl" alt="img"/>
-  
+                                        
+                                        
                                     </div>
                                                                     
 </section>
