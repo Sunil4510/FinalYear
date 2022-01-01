@@ -1,6 +1,9 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import {Link, useNavigate} from "react-router-dom"
+import {userContext} from "../App"
+
 const Signup = () => { 
+    const {state,dispatch} = useContext(userContext);
     const history = useNavigate();   
     const [user,setUser] = useState({name:"",email:"",password:"",cpassword:"",})
     let name,value;
@@ -10,7 +13,7 @@ const Signup = () => {
         value = e.target.value;
         setUser({...user,[name]:value});
     }
-    console.log(user)
+    //console.log(user)
 
     const PostData = async (e) => {
         e.preventDefault();
@@ -26,7 +29,7 @@ const Signup = () => {
         })
       });
 
-        console.log(res.status);
+        //console.log(res.status);
         const data = await res.json();
         
         if(res.status === 422 || !data){
@@ -34,9 +37,10 @@ const Signup = () => {
           console.log("invalid registration");
         }
         else{
+            dispatch({type:"user", payload:true});
           window.alert("valid registration");
           console.log("valid registration");
-          history("/login");
+          history("/");
         }
       }
 

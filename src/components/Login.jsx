@@ -11,7 +11,7 @@ const Login = () => {
         value = e.target.value;
         setlogin({...login,[name]:value});
     };
-    console.log(login);
+   // console.log(login);
         const loginuser = async (e)=> {
             e.preventDefault();
             const {email,password} = login; 

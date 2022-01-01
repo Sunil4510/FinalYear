@@ -40,3 +40,9 @@ font-weight: bold;
     font-size: 40px;
     color:rgb(3, 3, 3);
 } */
+.syndicates{
+    flex: 0.5;
+  }
+.home_right{
+    flex:0.5
+}  

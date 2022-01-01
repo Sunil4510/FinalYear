@@ -1,9 +1,40 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { userContext } from '../App';
+import {useNavigate} from "react-router-dom"
 const Pneu = () => {
-//const[src,setsrc] = useState();
-//const[preview,setpreview] = useState();
-const [file, setFile] = useState(null);
-const fileHandler = event => {
+
+    const {state,dispatch} = useContext(userContext);
+        const history = useNavigate(); 
+        const callpneumonia = async ()=>{
+            try{
+                const res = await fetch("/pneumonia",{
+                    method: "GET",
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    credentials:"include"
+                })
+                const data = await res.json()
+                    if(data.status!==200 || !data){
+                        dispatch({type:"user", payload:false})
+                       // history("/Login")
+                    }  
+                    dispatch({type:"user", payload:true})
+  
+            }catch(err){
+                history("/Login")
+                dispatch({type:"user", payload:false})
+                console.log(err)
+            }
+        }
+    useEffect(()=>{
+       callpneumonia();
+    },[])
+
+
+    const [file, setFile] = useState(null);
+    const fileHandler = event => {
   console.log(event.target.files[0]);
   let reader = new FileReader();
   reader.onload = function(e) {
@@ -11,29 +42,12 @@ const fileHandler = event => {
   };
   reader.readAsDataURL(event.target.files[0]);
 };
-// useEffect(()=>{
-//     if(!src){
-//         setsrc(undefined)
-//         return
-//     }
-//     const oburl = URL.createObjectURL(src);
-//     setpreview(oburl);
-//     return()=>URL.revokeObjectURL(oburl);
-// },[src])
 
 const res = (e) => {
     e.preventDefault();
     alert('working');
 }
-// const changes = (e) => {
-//     console.log(e.target.files[0].name);
-//     if (!e.target.files || e.target.files.length === 0) {
-//         setsrc(undefined)
-//         return
-//     }
-//     setsrc(e.target.files[0]);
-// }
-//console.log(src);
+
 return (
     <div className="home flex items-center justify-center flex-col pt-10 space-y-8">
         <div className="home__heading">
@@ -54,3 +68,25 @@ return (
 )
 }
 export default Pneu
+// const changes = (e) => {
+//     console.log(e.target.files[0].name);
+//     if (!e.target.files || e.target.files.length === 0) {
+//         setsrc(undefined)
+//         return
+//     }
+//     setsrc(e.target.files[0]);
+// }
+//console.log(src);
+
+// useEffect(()=>{
+//     if(!src){
+//         setsrc(undefined)
+//         return
+//     }
+//     const oburl = URL.createObjectURL(src);
+//     setpreview(oburl);
+//     return()=>URL.revokeObjectURL(oburl);
+// },[src])
+
+//const[src,setsrc] = useState();
+//const[preview,setpreview] = useState();

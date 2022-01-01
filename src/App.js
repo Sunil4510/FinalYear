@@ -7,7 +7,7 @@ import About from './components/About'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import {reducer,initialstate} from "../src/reducer/UseReducer"
-
+import Logout from './components/Logout'
 export const userContext = createContext();
 
 const Routing = ()=>{
@@ -15,11 +15,13 @@ const Routing = ()=>{
         <Router>
         <Navbar/>
             <Routes>
+                <Route path="/Login" element={<Login/>}/>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/Pneumonia" element={<Pneu/>}/>
                 <Route path="/About" element={<About/>}/>
-                <Route path="/Login" element={<Login/>}/>
                 <Route path="/Signup" element={<Signup/>}/>
+                <Route path="/Logout" element={<Logout/>}/>
+
             </Routes>
         </Router>
     )

@@ -7,24 +7,26 @@ const Navbar = () => {
     //const [login,setlogin] = useState(false);
     const {state,dispatch} = useContext(userContext);
     const li = "text-slate-500 hover:text-slate-200"; 
-    const logout = ()=>{
-        dispatch({type:"user",payload:false});
-        history("/Login")
-    }
+    // const logout = ()=>{
+    //     dispatch({type:"user",payload:false});
+    //     history("/Login")
+    // }
     const RenderMenu = () =>{
         if(state){
-            console.log(state);
+            //console.log(state);
             return(
                 <div className="right space-x-10 font-bold text-xl  mr-20">
                 <Link to="/" className={li}>HOME</Link>
                 <Link to="/Pneumonia" className={li}>Check Pneumonia</Link>
                 <Link to="/About" className={li}>About</Link>
-                <button className={li} onClick={logout}>Logout</button>
+                <Link to="/Logout" className={li}>Logout</Link>
             </div>
             )
         }else{
             return(
+
                 <div className="right space-x-10 font-bold text-xl  mr-20">
+                    <Link to="/" className={li}>HOME</Link>
                     <Link to="/Login" className={li}>Login</Link>
                     <Link to="/Signup" className={li}>Signup</Link>
                 </div>
