@@ -13,6 +13,7 @@ const Signup = () => {
         value = e.target.value;
         setUser({...user,[name]:value});
     }
+    console.log(user.password,  user.cpassword);
     //console.log(user)
 
     const PostData = async (e) => {
@@ -49,7 +50,7 @@ const Signup = () => {
     
     return (
     <div className="up flex items-center justify-center h-screen">
-    <div className="px-8 py-6 mx-4 mt-4 text-left rounded-xl bg-white shadow-lg md:w-1/3 lg:w-1/3 sm:w-1/3">
+    <div className="px-8 py-6 mx-4 mt-4 text-left rounded-xl bg-white shadow-2xl shadow-black md:w-1/3 lg:w-1/4 sm:w-1/3">
         <div className="flex justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 text-blue-600" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
@@ -61,35 +62,35 @@ const Signup = () => {
             </svg>
         </div>
         <h3 className="text-2xl font-bold text-center">Join us</h3>
-        <form method="POST" >
+        <form method="POST" onSubmit={PostData}>
             <div className="mt-4">
                 <div>
                     <label className="block" for="Name">Name</label>
-                            <input type="text" placeholder="Enter Your Name"
+                            <input required type="text" placeholder="Enter Your Name"
                             name="name" id="name" autoComplete="off" value={user.name} onChange={handleinputs}
                                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600"/>
                 </div>
                 <div className="mt-4">
                     <label className="block" for="email">Email</label>
-                            <input type="text" placeholder="Email"
+                            <input required type="text" placeholder="Enter Your Email"
                             name="email" id="email" autoComplete="off" value={user.email} onChange={handleinputs}
                                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required/>
                 </div>
                 <div className="mt-4">
                     <label className="block">Password</label>
-                            <input type="password" placeholder="Password"
+                            <input required type="password" placeholder="Enter Your Password"
                             name="password" id="password" autoComplete="off" value={user.password} onChange={handleinputs}
                                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required/>
                 </div>
                 <div className="mt-4">
                     <label className="block">Confirm Password</label>
-                            <input type="password" placeholder="Password"
+                            <input required type="password" placeholder="Enter Your Confirm Password"
                             name="cpassword" id="cpassword" autoComplete="off" value={user.cpassword} onChange={handleinputs}
                                 className="w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" required/>
                 </div>
-                <span className="text-xs text-red-400">Password must be same!</span>
+                {user.cpassword!==user.password&&(<span className="text-xs text-red-400">Password must be same!</span>)}
                 <div className="flex">
-                    <button className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900" onClick={PostData}>Create
+                    <button className="w-full px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900" type="submit">Create
                         Account</button>
                 </div>
                 <div className="mt-6 text-grey-dark">

@@ -37,7 +37,7 @@ const Login = () => {
 
     return (
         <div className='mt-20 flex bg-gray-bg1'>
-            <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-default py-10 px-16'>
+            <div className='w-full max-w-md m-auto bg-white rounded-lg border border-primaryBorder shadow-2xl shadow-black py-10 px-16'>
                 <div className="flex justify-center">
                     <svg xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 text-blue-600" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor">
@@ -52,7 +52,7 @@ const Login = () => {
                     Log in to your account 🔐
                 </h1>
 
-                <form method="POST">
+                <form method="POST" onSubmit={loginuser}>
                     <div>
                         <label htmlFor='email'>Email</label>
                         <input
@@ -60,6 +60,7 @@ const Login = () => {
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='email' name = "email" onChange = {handleinputs} value = {login.email}
                             placeholder='Your Email'
+                            required
                         />
                     </div>
                     <div>
@@ -69,13 +70,14 @@ const Login = () => {
                             className={`w-full p-2 text-primary border rounded-md outline-none text-sm transition duration-150 ease-in-out mb-4`}
                             id='password' name = "password" onChange = {handleinputs} value = {login.password}
                             placeholder='Your Password'
+                            required
                         />
                     </div>
 
                     <div className='flex justify-center items-center mt-6'>
                         <button
+                            type="submit"
                             className={`bg-green-400 py-2 px-4 text-sm text-white rounded border border-green-400 focus:outline-none focus:border-green-dark`}
-                            onClick = {loginuser}
                         >
                             Login
                         </button>
